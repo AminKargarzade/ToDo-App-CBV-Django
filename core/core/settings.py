@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "todo.apps.TodoConfig",
     'drf_yasg',
+    "rest_framework",
+    "django_filters"
 ]
 
 MIDDLEWARE = [
