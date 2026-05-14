@@ -10,5 +10,7 @@ djoser
 
 
 # Refactoring and Tests!
+black
+flake8
 pytest
 pytest-django
