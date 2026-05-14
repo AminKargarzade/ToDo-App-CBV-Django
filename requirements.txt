@@ -7,3 +7,8 @@ drf-yasg[validation]
 markdown
 django-filter
 djoser
+
+
+# Refactoring and Tests!
+pytest
+pytest-django
