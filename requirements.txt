@@ -1,5 +1,6 @@
 # General Modules
 django >5.2, <5.3
+python-decouple
 djangorestframework
 
 # 3rd party modules
@@ -7,3 +8,10 @@ drf-yasg[validation]
 markdown
 django-filter
 djoser
+
+
+# Refactoring and Tests!
+black
+flake8
+pytest
+pytest-django
