@@ -1,9 +1,8 @@
-from turtle import mode
-
 from django import forms
 from .models import Task
 
 # Reordering form and view
+
 
 class TaskUpdateForm(forms.ModelForm):
     title = forms.CharField(
@@ -16,7 +15,7 @@ class TaskUpdateForm(forms.ModelForm):
         ),
         label="",
     )
-    
+
     class Meta:
         model = Task
-        fields = ('title', )
+        fields = ("title",)

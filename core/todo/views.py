@@ -1,4 +1,3 @@
-from django.db.models.query import QuerySet
 from django.shortcuts import redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import (
@@ -17,49 +16,51 @@ from .models import Task
 
 # Create your views here.
 
+
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
-    context_object_name = 'tasks'
-    template_name = 'todo/list_task.html'
-    
+    context_object_name = "tasks"
+    template_name = "todo/list_task.html"
+
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
-    
+
+
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['title']
-    success_url = reverse_lazy('task_list')
-    
+    fields = ["title"]
+    success_url = reverse_lazy("task_list")
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TaskCreate, self).form_valid(form)
-    
+
+
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskUpdateForm
     success_url = reverse_lazy("task_list")
-    template_name = 'todo/update_task.html'
-    
+    template_name = "todo/update_task.html"
+
+
 class TaskComplete(LoginRequiredMixin, View):
     model = Task
-    success_url = reverse_lazy('task_list')
-    
+    success_url = reverse_lazy("task_list")
+
     def get(self, request, *args, **kwargs):
-        object = Task.objects.get(id=kwargs.get('pk'))
+        object = Task.objects.get(id=kwargs.get("pk"))
         object.complete = True
         object.save()
         return redirect(self.success_url)
-    
+
+
 class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
-    context_object_name = 'task'
-    success_url = reverse_lazy('task_list')
-    
-    
+    context_object_name = "task"
+    success_url = reverse_lazy("task_list")
+
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
-    
+
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
-    
-    
