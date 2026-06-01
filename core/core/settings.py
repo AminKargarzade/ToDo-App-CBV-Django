@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "djoser",
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
@@ -153,3 +154,15 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
 }
+
+# Celery Configs
+CELERY_BROKER_URL = (
+    "redis://redis:6379/1"  # The /1 represents that which database you wanna use?
+)
+
+# CELERY_BEAT_SCHEDULE = {
+#     'clearTask': {
+#         'task': 'todo.tasks.delete_completed_tasks',
+#         'schedule': 10.0  # every 10 seconds
+#     }
+# }
